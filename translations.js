@@ -6,7 +6,7 @@ const translations = {
         subtitle: "Blending <b>education</b> and artificial intelligence <i>technology</i>",
         ikignosis: "Ikignosis",
         ikignosis_phonetic: "/í-kee‑GNOH‑sis/",
-        providing_services: "Providing services to:",
+        providing_services: "Offering services to:",
         seed_funding: "Seed Funding",
         seed_funding_desc: "Currently seeking seed funding partners to accelerate our mission.",
         founding_supporters: "Founding Supporters:",
