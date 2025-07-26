@@ -63,10 +63,15 @@ const translations = {
     }
 };
 
-function getLangFromUrl() {
+function getLangFromUrlOrBrowser() {
     const match = window.location.pathname.match(/^\/(en_US|pt_PT|kk_KZ|de_DE)(\/|$)/);
     if (match) {
         return match[1].slice(0,2);
+    }
+    // Try browser language
+    const browserLang = (navigator.language || navigator.userLanguage || 'en').slice(0,2);
+    if (["en","pt","kk","de"].includes(browserLang)) {
+        return browserLang;
     }
     return 'en';
 }
@@ -92,7 +97,7 @@ function setTranslations(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    let lang = getLangFromUrl();
+    let lang = getLangFromUrlOrBrowser();
     setTranslations(lang);
     const select = document.getElementById('language-select');
     if (select) {
