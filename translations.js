@@ -60,6 +60,21 @@ const translations = {
         email: "janito@ikignosis.org",
         language: "🌐 Sprache:",
         selected: "Ausgewählt:",
+    },
+    fr: {
+        title: "But né de la connaissance",
+        subtitle: "Fusion de <b>l'éducation</b> et de la technologie d'intelligence artificielle <i>technologie</i>",
+        ikignosis: "Ikignosis",
+        ikignosis_phonetic: "/í-kee‑GNOH‑sis/",
+        providing_services: "Services proposés aux:",
+        seed_funding: "Financement initial",
+        seed_funding_desc: "Recherche actuelle de partenaires de financement initial pour accélérer notre mission.",
+        founding_supporters: "Fondateurs soutiens:",
+        sponsored_project: "Projet parrainé",
+        sponsored_project_desc: "Découvrez notre projet open-source sur GitHub:",
+        email: "janito@ikignosis.org",
+        language: "🌐 Langue:",
+        selected: "Sélectionné:",
     }
 };
 
@@ -70,7 +85,7 @@ function getLangFromUrlOrBrowser() {
     }
     // Try browser language
     const browserLang = (navigator.language || navigator.userLanguage || 'en').slice(0,2);
-    if (["en","pt","kk","de"].includes(browserLang)) {
+    if (["en","pt","kk","de","fr"].includes(browserLang)) {
         return browserLang;
     }
     return 'en';
@@ -107,7 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'en': 'en_US',
                 'pt': 'pt_PT',
                 'kk': 'kk_KZ',
-                'de': 'de_DE'
+                'de': 'de_DE',
+                'fr': 'fr_FR'
             };
             let iso = langMap[this.value] || this.value;
             let path = window.location.pathname.replace(/^\/[a-z]{2}(_[A-Z]{2})?\//, '/');
