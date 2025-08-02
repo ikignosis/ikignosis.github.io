@@ -75,6 +75,21 @@ const translations = {
         email: "janito@ikignosis.org",
         language: "🌐 Langue:",
         selected: "Sélectionné:",
+    },
+    ru: {
+        title: "Цель, рожденная знанием",
+        subtitle: "Сочетание <b>образования</b> и технологий искусственного интеллекта <i>технологии</i>",
+        ikignosis: "Ikignosis",
+        ikignosis_phonetic: "/í-kee‑GNOH‑sis/",
+        providing_services: "Предоставление услуг для:",
+        seed_funding: "Сидовое финансирование",
+        seed_funding_desc: "В настоящее время ищем партнеров для сидового финансирования для ускорения нашей миссии.",
+        founding_supporters: "Учредительские спонсоры:",
+        sponsored_project: "Спонсируемый проект",
+        sponsored_project_desc: "Ознакомьтесь с нашим проектом с открытым исходным кодом на GitHub:",
+        email: "janito@ikignosis.org",
+        language: "🌐 Язык:",
+        selected: "Выбрано:",
     }
 };
 
@@ -85,7 +100,7 @@ function getLangFromUrlOrBrowser() {
     }
     // Try browser language
     const browserLang = (navigator.language || navigator.userLanguage || 'en').slice(0,2);
-    if (["en","pt","kk","de","fr"].includes(browserLang)) {
+    if (["en","pt","kk","de","fr","ru"].includes(browserLang)) {
         return browserLang;
     }
     return 'en';
@@ -123,7 +138,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'pt': 'pt_PT',
                 'kk': 'kk_KZ',
                 'de': 'de_DE',
-                'fr': 'fr_FR'
+                'fr': 'fr_FR',
+                'ru': 'ru_RU'
             };
             let iso = langMap[this.value] || this.value;
             let path = window.location.pathname.replace(/^\/[a-z]{2}(_[A-Z]{2})?\//, '/');
