@@ -1,0 +1,42 @@
+# Git files
+.git
+.gitignore
+
+# Documentation
+README.md
+deploy.md
+pages-naming.md
+
+# Development files
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Build artifacts
+node_modules/
+dist/
+build/
+
+# Test files
+test.py
+
+# Archive files
+*.zip
+*.tar.gz
+*.rar
+
+# Environment files
+.env
+.env.local
+.env.*.local

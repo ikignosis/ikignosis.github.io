@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OG Image Generator - Ikignosis</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .og-preview {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #181a1b 0%, #232526 100%);
+            color: #f8f9fa;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin: 20px auto;
+            transform: scale(0.5);
+            transform-origin: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .og-title {
+            font-size: 72px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+            color: #f8f9fa;
+            max-width: 90%;
+            line-height: 1.2;
+        }
+        .og-subtitle {
+            font-size: 36px;
+            color: #8ecae6;
+            margin-bottom: 40px;
+            font-weight: 300;
+            max-width: 80%;
+            line-height: 1.4;
+        }
+        .og-brand {
+            font-size: 48px;
+            font-weight: 500;
+            color: #00ff88;
+            margin-top: 20px;
+        }
+        .og-phonetic {
+            font-size: 28px;
+            color: #bbb;
+            font-style: italic;
+            margin-top: 10px;
+        }
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .download-btn {
+            background: #00ff88;
+            color: #181a1b;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 20px 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .download-btn:hover {
+            background: #00cc6a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OG Image Generator for Ikignosis</h1>
+        
+        <div class="instructions">
+            <h3>How to use this generator:</h3>
+            <ol>
+                <li>Right-click on the preview below</li>
+                <li>Select "Save image as..." or use browser's screenshot tool</li>
+                <li>Save as "og-image.jpg" in the assets folder</li>
+                <li>Ensure final dimensions are exactly 1200x630 pixels</li>
+            </ol>
+            <p><strong>Alternative:</strong> Use browser's developer tools to take a screenshot at 1200x630 resolution.</p>
+        </div>
+
+        <div class="og-preview" id="og-image">
+            <div class="og-title">Purpose Born of Knowing</div>
+            <div class="og-subtitle">Blending education and artificial intelligence technology</div>
+            <div class="og-brand">Ikignosis</div>
+            <div class="og-phonetic">/í-kee-GNOH-sis/</div>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="download-btn" onclick="downloadImage()">Download OG Image</button>
+            <button class="download-btn" onclick="regenerate()">Regenerate</button>
+        </div>
+    </div>
+
+    <script>
+        function downloadImage() {
+            // This would require html2canvas or similar library
+            alert('To download: Right-click on the preview image above and select "Save image as..."\n\nFor best results, use browser developer tools to capture at exactly 1200x630 pixels.');
+        }
+
+        function regenerate() {
+            const colors = [
+                { bg: '#181a1b', text: '#f8f9fa', accent: '#00ff88' },
+                { bg: '#1a2332', text: '#e8f4f8', accent: '#4fc3f7' },
+                { bg: '#0f172a', text: '#f1f5f9', accent: '#38bdf8' }
+            ];
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const preview = document.getElementById('og-image');
+            preview.style.background = `linear-gradient(135deg, ${randomColor.bg} 0%, ${randomColor.text} 100%)`;
+        }
+
+        // Add subtle animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const preview = document.getElementById('og-image');
+            preview.style.animation = 'fadeIn 1s ease-in';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+# nine.ch App Deployment Configuration
+# This file configures the deployment of this static website on nine.ch
+
+# Application name (will be used in URLs and identifiers)
+name: ikignosis-website
+
+# Type of application
+app_type: static
+
+# Build configuration
+build:
+  # Use the official nginx image as base for static hosting
+  base_image: nginx:alpine
+  
+  # Build steps - copy all static files to nginx html directory
+  build_steps:
+    - cp -r * /usr/share/nginx/html/
+    - cp -r .* /usr/share/nginx/html/ 2>/dev/null || true
+
+# Runtime configuration
+runtime:
+  # Port configuration (nginx default)
+  ports:
+    - 80
+  
+  # Health check endpoint
+  health_check:
+    path: /
+    interval: 30s
+    timeout: 5s
+
+# Environment variables (if needed)
+env:
+  # Set nginx to serve files efficiently
+  NGINX_WORKER_PROCESSES: auto
+  NGINX_CLIENT_MAX_BODY_SIZE: 10m
+
+# Static file serving configuration
+static:
+  # Directory containing static files
+  root: /usr/share/nginx/html
+  
+  # Default index files
+  index_files:
+    - index.html
+    - index.htm
+  
+  # MIME type handling
+  mime_types:
+    text/html: .html
+    text/css: .css
+    application/javascript: .js
+    image/svg+xml: .svg
+    image/png: .png
+    image/jpeg: .jpg,.jpeg
+    image/gif: .gif
+    application/json: .json
+
+# Routing configuration
+routes:
+  # Main domain route
+  - path: /
+    target: /usr/share/nginx/html/index.html
+  
+  # Language-specific routes
+  - path: /en_US/*
+    target: /usr/share/nginx/html/en_US/
+  - path: /de_DE/*
+    target: /usr/share/nginx/html/de_DE/
+  - path: /fr_FR/*
+    target: /usr/share/nginx/html/fr_FR/
+  - path: /pt_PT/*
+    target: /usr/share/nginx/html/pt_PT/
+  - path: /ru_RU/*
+    target: /usr/share/nginx/html/ru_RU/
+  - path: /kk_KZ/*
+    target: /usr/share/nginx/html/kk_KZ/
+
+# Deployment settings
+deployment:
+  # Branch to deploy from
+  branch: main
+  
+  # Auto-deploy on push to branch
+  auto_deploy: true
+  
+  # Build timeout
+  build_timeout: 10m
+  
+  # Resource limits
+  resources:
+    memory: 128Mi
+    cpu: 100m
+
+# Scaling configuration
+scaling:
+  # Minimum number of instances
+  min_instances: 1
+  
+  # Maximum number of instances
+  max_instances: 2
+  
+  # Target CPU utilization for scaling
+  target_cpu_utilization: 70
+
+# Domain configuration
+domains:
+  # Primary domain (replace with your actual domain)
+  - ikignosis.ch
+  
+  # Additional domains (optional)
+  # - www.ikignosis.ch
+
+# SSL/TLS configuration
+ssl:
+  # Enable automatic SSL certificate provisioning
+  enabled: true
+  
+  # Force HTTPS redirect
+  force_https: true
+  
+  # Certificate provider
+  provider: letsencrypt
+
+# Security headers
+security:
+  headers:
+    X-Frame-Options: SAMEORIGIN
+    X-Content-Type-Options: nosniff
+    X-XSS-Protection: 1; mode=block
+    Referrer-Policy: strict-origin-when-cross-origin
+    Content-Security-Policy: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:;"
