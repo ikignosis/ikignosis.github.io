@@ -2,7 +2,7 @@
 # This file configures the deployment of this static website on nine.ch
 
 # Application name (will be used in URLs and identifiers)
-name: ikignosis-website
+name: ikignosis-org
 
 # Type of application
 app_type: static
@@ -16,8 +16,6 @@ build:
   build_steps:
     - cp -r * /usr/share/nginx/html/
     - cp -r .* /usr/share/nginx/html/ 2>/dev/null || true
-    - ls -la /usr/share/nginx/html/
-    - echo "Build completed successfully"
 
 # Runtime configuration
 runtime:
