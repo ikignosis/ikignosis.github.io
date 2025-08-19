@@ -17,6 +17,7 @@ build:
     - cp -r * /usr/share/nginx/html/
     - cp -r .* /usr/share/nginx/html/ 2>/dev/null || true
     - ls -la /usr/share/nginx/html/
+    - echo "Build completed successfully"
 
 # Runtime configuration
 runtime:
@@ -90,8 +91,8 @@ deployment:
   
   # Resource limits
   resources:
-    memory: 128Mi
-    cpu: 100m
+    memory: 256Mi
+    cpu: 200m
 
 # Scaling configuration
 scaling:
