@@ -1,7 +1,7 @@
 # GitHub Pages Repository Naming Requirements
 
 ## User/Organization Sites
-If you want your GitHub Pages site to be served at `https://ikignosis.github.io` (or with a custom domain like `ikignosis.org`), the repository **must** be named:
+If you want your GitHub Pages site to be served at `https://ikignosis.org` (with a custom domain), the repository can be named anything, but `ikignosis.org` is recommended for clarity.
 
 ```
 ikignosis.github.io
