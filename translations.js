@@ -108,18 +108,29 @@ function getLangFromUrlOrBrowser() {
 
 function setTranslations(lang) {
     const t = translations[lang] || translations['en'];
-    document.getElementById('main-title').innerHTML = t.title;
-    document.getElementById('subtitle').innerHTML = t.subtitle;
-    document.getElementById('ikignosis').textContent = t.ikignosis;
-    document.getElementById('ikignosis-phonetic').textContent = t.ikignosis_phonetic;
-    document.getElementById('providing-services').textContent = t.providing_services;
-    document.getElementById('seed-funding').textContent = t.seed_funding;
-    document.getElementById('seed-funding-desc').textContent = t.seed_funding_desc;
-    document.getElementById('founding-supporters').textContent = t.founding_supporters;
-    document.getElementById('sponsored-project').textContent = t.sponsored_project;
-    document.getElementById('sponsored-project-desc').textContent = t.sponsored_project_desc;
-    document.getElementById('email-link').textContent = t.email;
-    document.getElementById('language-label').textContent = t.language;
+    const setTitle = (id, text, useInnerHTML = false) => {
+        const el = document.getElementById(id);
+        if (el) {
+            if (useInnerHTML) {
+                el.innerHTML = text;
+            } else {
+                el.textContent = text;
+            }
+        }
+    };
+
+    setTitle('main-title', t.title, true);
+    setTitle('subtitle', t.subtitle, true);
+    setTitle('ikignosis', t.ikignosis);
+    setTitle('ikignosis-phonetic', t.ikignosis_phonetic);
+    setTitle('providing-services', t.providing_services);
+    setTitle('seed-funding', t.seed_funding);
+    setTitle('seed-funding-desc', t.seed_funding_desc);
+    setTitle('founding-supporters', t.founding_supporters);
+    setTitle('sponsored-project', t.sponsored_project);
+    setTitle('sponsored-project-desc', t.sponsored_project_desc);
+    setTitle('email-link', t.email);
+    setTitle('language-label', t.language);
     // Update language selector label
     const select = document.getElementById('language-select');
     const msg = document.getElementById('lang-msg');
