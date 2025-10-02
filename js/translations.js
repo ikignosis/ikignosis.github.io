@@ -14,15 +14,18 @@ async function loadTranslations(lang) {
     }
 }
 
-// Get language from URL or browser
+// Get language from URL query parameter or browser
 function getLangFromUrlOrBrowser() {
-    const match = window.location.pathname.match(/^\/(en_US|pt_PT|kk_KZ|de_DE|fr_FR|ru_RU)(\/|$)/);
-    if (match) {
-        return match[1].slice(0,2);
+    // Try to get language from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam && ["en_US", "pt_PT", "kk_KZ", "de_DE", "fr_FR", "ru_RU"].includes(langParam)) {
+        return langParam.slice(0, 2);
     }
+    
     // Try browser language
-    const browserLang = (navigator.language || navigator.userLanguage || 'en').slice(0,2);
-    if (["en","pt","kk","de","fr","ru"].includes(browserLang)) {
+    const browserLang = (navigator.language || navigator.userLanguage || 'en').slice(0, 2);
+    if (["en", "pt", "kk", "de", "fr", "ru"].includes(browserLang)) {
         return browserLang;
     }
     return 'en';
@@ -77,10 +80,11 @@ document.addEventListener('DOMContentLoaded', async function() {
                 'ru': 'ru_RU'
             };
             let iso = langMap[this.value] || this.value;
-            let path = window.location.pathname.replace(/^\/[a-z]{2}(_[A-Z]{2})?\//, '/');
-            // Update URL without reloading
+            // Update URL with query parameter without reloading
             try {
-                window.history.pushState({}, '', `/${iso}${path}`);
+                const url = new URL(window.location);
+                url.searchParams.set('lang', iso);
+                window.history.pushState({}, '', url);
             } catch (e) {
                 // Fallback for local file:// URLs
                 console.log('Language changed to:', this.value);
